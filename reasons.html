@@ -1,12 +1,173 @@
-    <div class="reason-card"><span class="number">01</span>Your smile is the first thing that brightens my day, no matter how tired I am.</div>
-    <div class="reason-card"><span class="number">02</span>The way you pray for us—it shows me how much you value our future together.</div>
-    <div class="reason-card"><span class="number">03</span>Your kindness and how you care for me is extraordinary.</div>
-    <div class="reason-card"><span class="number">04</span>The way you make me feel like the luckiest man just by being yourself.</div>
-    <div class="reason-card"><span class="number">05</span>You are my peace in this very busy world.</div>
-    <div class="reason-card"><span class="number">06</span>I love the way we can talk about anything and everything for hours and the way we fights and settles like cat and dog 😂.</div>
-    <div class="reason-card" style="border: 1px solid var(--primary);"><span class="number">07</span>Because when I look into the future, you are the one I want by my side, and I want you to be the mother of my children.</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Reasons - Ademi</title>
+    <style>
+        :root {
+            --primary: #ff4b5c;
+            --secondary: #ff7582;
+            --bg: #0b0914;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
 
-    <div class="signature">
-        With all my love, <br>
-        <strong>Akinola Boluwatife Ayomide</strong>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 75, 92, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 75, 92, 0.1) 0%, transparent 40%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .reason-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .reason-card:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .number {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .reason-text {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .special-card {
+            border: 1px solid var(--primary);
+            background: linear-gradient(145deg, rgba(255, 75, 92, 0.1), transparent);
+        }
+
+        .signature {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .signature p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .name {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Reasons I Love You</h1>
+        <p style="opacity: 0.7;">My heart in words...</p>
+    </header>
+
+    <div class="container">
+        <div class="reason-card">
+            <span class="number">01</span>
+            <div class="reason-text">Your smile is the first thing that brightens my day, no matter how tired I am.</div>
+        </div>
+
+        <div class="reason-card">
+            <span class="number">02</span>
+            <div class="reason-text">The way you pray for us—it shows me how much you value our future together.</div>
+        </div>
+
+        <div class="reason-card">
+            <span class="number">03</span>
+            <div class="reason-text">Your kindness and how you care for me is extraordinary.</div>
+        </div>
+
+        <div class="reason-card">
+            <span class="number">04</span>
+            <div class="reason-text">The way you make me feel like the luckiest man just by being yourself.</div>
+        </div>
+
+        <div class="reason-card">
+            <span class="number">05</span>
+            <div class="reason-text">You are my peace in this very busy world.</div>
+        </div>
+
+        <div class="reason-card">
+            <span class="number">06</span>
+            <div class="reason-text">I love the way we can talk about anything and everything for hours, and the way we fight and settle like cat and dog 😂.</div>
+        </div>
+
+        <div class="reason-card special-card">
+            <span class="number">07</span>
+            <div class="reason-text">Because when I look into the future, you are the one I want by my side, and I want you to be the mother of my children.</div>
+        </div>
+
+        <div class="signature">
+            <p>With all my love,</p>
+            <span class="name">Akinola Boluwatife Ayomide</span>
+            <br>
+            <a href="index.html" class="back-btn">← Back to Gallery</a>
+        </div>
     </div>
+
+</body>
+</html>
