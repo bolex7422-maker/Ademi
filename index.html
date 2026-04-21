@@ -3,178 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You, Adenike</title>
+    <title>Our Story - Adenike</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery-bundle.min.css">
     <style>
         :root {
             --primary: #ff4b5c;
-            --glass: rgba(255, 255, 255, 0.12);
-            --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.08);
+            --bg: #0b0914;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: var(--text);
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #1a1a2e, #0b0914);
+            color: white;
             overflow-x: hidden;
-            min-height: 100vh;
         }
 
-        .bg-hearts {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            pointer-events: none;
+        /* Floating Animation */
+        .bg-elements {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
         }
 
         #lock-screen {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.8s ease;
+            position: fixed; inset: 0; background: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000; transition: 0.8s ease;
         }
 
         .login-box {
             background: var(--glass);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            padding: 40px; border-radius: 30px;
             border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            width: 85%;
-            max-width: 350px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            text-align: center; width: 80%; max-width: 320px;
         }
 
-        h2 { font-weight: 300; letter-spacing: 2px; }
-
         input {
-            width: 100%;
-            padding: 14px;
-            margin: 25px 0;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255,255,255,0.9);
-            font-size: 16px;
-            text-align: center;
-            outline: none;
+            width: 100%; padding: 15px; margin: 20px 0;
+            border-radius: 15px; border: none; text-align: center;
+            font-size: 16px; outline: none;
         }
 
         button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 40px;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4);
+            background: var(--primary); color: white; border: none;
+            padding: 15px 40px; border-radius: 30px; font-weight: bold;
+            cursor: pointer; box-shadow: 0 5px 20px rgba(255,75,92,0.4);
         }
 
-        button:active { transform: scale(0.95); }
+        #main-content { display: none; opacity: 0; transition: 2s ease; }
 
-        #main-content {
-            display: none;
-            padding: 20px;
-            animation: fadeIn 1.5s ease;
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        h1 { font-size: 2.2rem; font-weight: 300; margin-bottom: 15px; letter-spacing: 3px; }
+        header { text-align: center; padding: 80px 20px 40px; }
+        h1 { font-weight: 200; letter-spacing: 5px; margin-bottom: 20px; }
         
-        .letter {
-            max-width: 500px;
-            margin: 0 auto 50px;
-            line-height: 1.8;
-            background: var(--glass);
-            padding: 30px;
-            border-radius: 20px;
-            font-style: italic;
+        .letter-box {
+            max-width: 600px; margin: 0 auto 60px;
+            background: var(--glass); padding: 30px;
+            border-radius: 20px; font-style: italic; line-height: 1.8;
             border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto 100px;
+        /* Masonry Grid */
+        .gallery-grid {
+            column-count: 2;
+            column-gap: 15px;
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .card {
-            background: var(--glass);
-            border-radius: 20px;
-            padding: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        @media (min-width: 768px) { .gallery-grid { column-count: 3; } }
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .card img {
+        .gallery-item {
+            display: inline-block;
             width: 100%;
+            margin-bottom: 15px;
             border-radius: 15px;
-            display: block;
-            object-fit: cover;
+            overflow: hidden;
+            background: var(--glass);
+            transition: 0.4s ease;
+            cursor: pointer;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .gallery-item img { width: 100%; display: block; border-radius: 15px; }
 
-        #error-msg { color: #ff8e9a; font-size: 14px; margin-top: 15px; height: 20px; }
+        #error-msg { color: #ff8e9a; font-size: 14px; margin-top: 10px; }
+        
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--primary); color: white;
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            text-decoration: none; font-size: 20px; opacity: 0.7;
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-hearts" id="heart-bg"></div>
+    <div class="bg-elements" id="bg-stars"></div>
 
     <div id="lock-screen">
         <div class="login-box">
-            <h2>Hiiii ❤️</h2>
-            <p style="opacity: 0.8;">Enter our secret key</p>
-            <input type="password" id="pass" placeholder="Your name...">
-            <button onclick="unlock()">Open My Heart</button>
+            <h2>Hi my little princess Ademi ❤️</h2>
+            <input type="password" id="pass" placeholder="Enter our secret key...">
+            <button onclick="unlock()">Unlock Memories</button>
             <p id="error-msg"></p>
         </div>
     </div>
 
     <div id="main-content">
         <header>
-            <h1>For You, Adenike</h1>
-            <div class="letter">
-                "Every photo here is a piece of a story I never want to end. Thank you for being my favorite chapter."
+            <h1>ADENIKE</h1>
+            <div class="letter-box">
+                "Here is to every laugh, every prayer, and every beautiful second we've shared. This is our small space of the internet, where our best moments live forever.And i want you to know that i will always love you till the end, i was trying to develop this thats why i was  not replying to your messages, it took me hours before i could set it lol "
             </div>
         </header>
 
-        <div class="gallery">
-            <div class="card"><img src="https://i.postimg.cc/VvVMSt5X/IMG-9867.jpg" alt="Memory 1"></div>
-            <div class="card"><img src="https://i.postimg.cc/x1cnQFwG/0f04122d-c57f-446d-8d73-c115d0104dfc.jpg" alt="Memory 2"></div>
-            <div class="card"><img src="https://i.postimg.cc/dVLwFSbD/39c8505d-555a-4e1f-98c7-3411131a5cfc.jpg" alt="Memory 3"></div>
-            <div class="card"><img src="https://i.postimg.cc/BnX43wr8/4877d535-09f5-4c7b-9237-2263de300a19.jpg" alt="Memory 4"></div>
-            <div class="card"><img src="https://i.postimg.cc/rwKMTYBW/8200f728-cb5b-442b-8e01-361d3e998511.jpg" alt="Memory 5"></div>
-            <div class="card"><img src="https://i.postimg.cc/t4YpbmKx/9a2c11e4-d63e-4ba0-a15a-d4c1a38fd36f.jpg" alt="Memory 6"></div>
-            <div class="card"><img src="https://i.postimg.cc/T3pfxHzp/9c2c102f-d25e-49a1-8f2b-115ec16f679c.jpg" alt="Memory 7"></div>
-            <div class="card"><img src="https://i.postimg.cc/y8ksKrM0/9d696f63-e1cd-4039-93f1-ed9173a50300.jpg" alt="Memory 8"></div>
-            <div class="card"><img src="https://i.postimg.cc/MpvqwrCb/c151a952-49e2-4d78-818f-6df19bb30ba8.jpg" alt="Memory 9"></div>
-            <div class="card"><img src="https://i.postimg.cc/HkVdmPqx/image.jpg" alt="Memory 10"></div>
+        <div class="gallery-grid" id="lightgallery">
+            <a href="https://i.postimg.cc/VvVMSt5X/IMG-9867.jpg" class="gallery-item"><img src="https://i.postimg.cc/VvVMSt5X/IMG-9867.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/dVLwFSbD/39c8505d-555a-4e1f-98c7-3411131a5cfc.jpg" class="gallery-item"><img src="https://i.postimg.cc/dVLwFSbD/39c8505d-555a-4e1f-98c7-3411131a5cfc.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/BnX43wr8/4877d535-09f5-4c7b-9237-2263de300a19.jpg" class="gallery-item"><img src="https://i.postimg.cc/BnX43wr8/4877d535-09f5-4c7b-9237-2263de300a19.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/rwKMTYBW/8200f728-cb5b-442b-8e01-361d3e998511.jpg" class="gallery-item"><img src="https://i.postimg.cc/rwKMTYBW/8200f728-cb5b-442b-8e01-361d3e998511.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/y8ksKrM0/9d696f63-e1cd-4039-93f1-ed9173a50300.jpg" class="gallery-item"><img src="https://i.postimg.cc/y8ksKrM0/9d696f63-e1cd-4039-93f1-ed9173a50300.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/zGV8NPsk/IMG-6723.jpg" class="gallery-item"><img src="https://i.postimg.cc/zGV8NPsk/IMG-6723.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/g2nmpBCv/IMG-7544.jpg" class="gallery-item"><img src="https://i.postimg.cc/g2nmpBCv/IMG-7544.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/m2dB0G5r/IMG-9465.jpg" class="gallery-item"><img src="https://i.postimg.cc/m2dB0G5r/IMG-9465.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/7ZYj7sw5/0972bccc-d389-468e-84c2-d275a0871f25.jpg" class="gallery-item"><img src="https://i.postimg.cc/7ZYj7sw5/0972bccc-d389-468e-84c2-d275a0871f25.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/htPNxych/15eac1e5-2ad0-4705-b86c-8c21160fd5fd.jpg" class="gallery-item"><img src="https://i.postimg.cc/htPNxych/15eac1e5-2ad0-4705-b86c-8c21160fd5fd.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/7ZYj7swf/1676a655-7c5a-45db-b0cf-97bf1894987f.jpg" class="gallery-item"><img src="https://i.postimg.cc/7ZYj7swf/1676a655-7c5a-45db-b0cf-97bf1894987f.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/K8vCLqxB/18d02f6c-d24f-4d0b-8267-5e8cbd9217b7.jpg" class="gallery-item"><img src="https://i.postimg.cc/K8vCLqxB/18d02f6c-d24f-4d0b-8267-5e8cbd9217b7.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/Gm7VjFmZ/229a6a70-c334-4f81-8e5f-abf09213158d.jpg" class="gallery-item"><img src="https://i.postimg.cc/Gm7VjFmZ/229a6a70-c334-4f81-8e5f-abf09213158d.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/mrPqpPPK/34c9cb88-d478-4a4f-8186-6d2cae025fa3.jpg" class="gallery-item"><img src="https://i.postimg.cc/mrPqpPPK/34c9cb88-d478-4a4f-8186-6d2cae025fa3.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/nLX5SXsV/46d93c26-a411-4e29-bd66-e8042b5875d1.jpg" class="gallery-item"><img src="https://i.postimg.cc/nLX5SXsV/46d93c26-a411-4e29-bd66-e8042b5875d1.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/NfxWKqqL/4ad0be42-af87-4d8a-b18b-5bb1afec2caf.jpg" class="gallery-item"><img src="https://i.postimg.cc/NfxWKqqL/4ad0be42-af87-4d8a-b18b-5bb1afec2caf.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/cJvjkvKS/54b7e9d8-9f8f-4788-9c2c-c6c3c4abe343.jpg" class="gallery-item"><img src="https://i.postimg.cc/cJvjkvKS/54b7e9d8-9f8f-4788-9c2c-c6c3c4abe343.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/jjD93DWV/61594066-1a75-4783-be64-2cecf503c15c.jpg" class="gallery-item"><img src="https://i.postimg.cc/jjD93DWV/61594066-1a75-4783-be64-2cecf503c15c.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/CKRtrRZ0/76f711f5-9382-4100-8c3a-92fd421e2c6a.jpg" class="gallery-item"><img src="https://i.postimg.cc/CKRtrRZ0/76f711f5-9382-4100-8c3a-92fd421e2c6a.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/mg2KMXBM/7ebf2e70-36be-4b57-9482-ccca8b7a7142.jpg" class="gallery-item"><img src="https://i.postimg.cc/mg2KMXBM/7ebf2e70-36be-4b57-9482-ccca8b7a7142.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/bwCWRxwF/7fc2c6bc-2eb3-47b3-b248-d5d389269271.jpg" class="gallery-item"><img src="https://i.postimg.cc/bwCWRxwF/7fc2c6bc-2eb3-47b3-b248-d5d389269271.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/527TmB2G/91744270-e8ad-46a8-95d6-985c07638ad9.jpg" class="gallery-item"><img src="https://i.postimg.cc/527TmB2G/91744270-e8ad-46a8-95d6-985c07638ad9.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/2ScMxQSg/99b89759-e518-44cc-9361-188ab0e54537.jpg" class="gallery-item"><img src="https://i.postimg.cc/2ScMxQSg/99b89759-e518-44cc-9361-188ab0e54537.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/9fDSgD4H/9ac2acde-553a-4024-bdc5-0a7894f9b45f.jpg" class="gallery-item"><img src="https://i.postimg.cc/9fDSgD4H/9ac2acde-553a-4024-bdc5-0a7894f9b45f.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/RZsyT7Zy/9bdc6ada-f512-487d-9511-2c3717b1bd96.jpg" class="gallery-item"><img src="https://i.postimg.cc/RZsyT7Zy/9bdc6ada-f512-487d-9511-2c3717b1bd96.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/k52ZY22k/9d1293ab-db65-454a-b31c-ddfa1fbd8d1d.jpg" class="gallery-item"><img src="https://i.postimg.cc/k52ZY22k/9d1293ab-db65-454a-b31c-ddfa1fbd8d1d.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/43YM2YKk/a868d72a-53ed-4491-b095-13395eea039d.jpg" class="gallery-item"><img src="https://i.postimg.cc/43YM2YKk/a868d72a-53ed-4491-b095-13395eea039d.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/sg6qJYgk/b15458cb-9f0f-401f-98c2-8bb184bbf40d.jpg" class="gallery-item"><img src="https://i.postimg.cc/sg6qJYgk/b15458cb-9f0f-401f-98c2-8bb184bbf40d.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/hty60LtC/b37ffe57-be4b-4643-a9da-e5f55a984696.jpg" class="gallery-item"><img src="https://i.postimg.cc/hty60LtC/b37ffe57-be4b-4643-a9da-e5f55a984696.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/Z572L85M/b901d139-3aea-45e7-aa5d-7b48f150cf9e.jpg" class="gallery-item"><img src="https://i.postimg.cc/Z572L85M/b901d139-3aea-45e7-aa5d-7b48f150cf9e.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/zGt6kCGQ/c28fc2df-4880-45bf-a828-35210f3e3332.jpg" class="gallery-item"><img src="https://i.postimg.cc/zGt6kCGQ/c28fc2df-4880-45bf-a828-35210f3e3332.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/JhsgYsyW/dadb99ed-b395-4e09-a697-fcc72e5fbc0e.jpg" class="gallery-item"><img src="https://i.postimg.cc/JhsgYsyW/dadb99ed-b395-4e09-a697-fcc72e5fbc0e.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/g2SQKV09/fc2549ef-cd4f-43d2-ae08-1199d8830969.jpg" class="gallery-item"><img src="https://i.postimg.cc/g2SQKV09/fc2549ef-cd4f-43d2-ae08-1199d8830969.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/L86GfC28/IMG-0155.png" class="gallery-item"><img src="https://i.postimg.cc/L86GfC28/IMG-0155.png" alt="Memory"></a>
+            <a href="https://i.postimg.cc/K8vCLqxv/IMG-0156.png" class="gallery-item"><img src="https://i.postimg.cc/K8vCLqxv/IMG-0156.png" alt="Memory"></a>
+            <a href="https://i.postimg.cc/pdm7cmm1/IMG-0990.jpg" class="gallery-item"><img src="https://i.postimg.cc/pdm7cmm1/IMG-0990.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/6pjghrQx/IMG-0991.jpg" class="gallery-item"><img src="https://i.postimg.cc/6pjghrQx/IMG-0991.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/T37FcVP6/IMG-0997.jpg" class="gallery-item"><img src="https://i.postimg.cc/T37FcVP6/IMG-0997.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/VLF3JQQv/IMG-0999.jpg" class="gallery-item"><img src="https://i.postimg.cc/VLF3JQQv/IMG-0999.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/Gp4Ng44f/IMG-1001.jpg" class="gallery-item"><img src="https://i.postimg.cc/Gp4Ng44f/IMG-1001.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/nhRg14Lt/IMG-1648.jpg" class="gallery-item"><img src="https://i.postimg.cc/nhRg14Lt/IMG-1648.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/rwF7WnMT/IMG-1664.jpg" class="gallery-item"><img src="https://i.postimg.cc/rwF7WnMT/IMG-1664.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/52NDv7bf/IMG-2969.jpg" class="gallery-item"><img src="https://i.postimg.cc/52NDv7bf/IMG-2969.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/t4C8PSpp/IMG-3154.jpg" class="gallery-item"><img src="https://i.postimg.cc/t4C8PSpp/IMG-3154.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/W4dKYdD1/IMG-3505.jpg" class="gallery-item"><img src="https://i.postimg.cc/W4dKYdD1/IMG-3505.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/wB1P41tH/IMG-4796.jpg" class="gallery-item"><img src="https://i.postimg.cc/wB1P41tH/IMG-4796.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/8zK9bRzZ/IMG-4883.jpg" class="gallery-item"><img src="https://i.postimg.cc/8zK9bRzZ/IMG-4883.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/kg1zyQgF/IMG-5319.jpg" class="gallery-item"><img src="https://i.postimg.cc/kg1zyQgF/IMG-5319.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/Jz6vQNzb/IMG-5322.jpg" class="gallery-item"><img src="https://i.postimg.cc/Jz6vQNzb/IMG-5322.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/P539MW5Z/IMG-5324.jpg" class="gallery-item"><img src="https://i.postimg.cc/P539MW5Z/IMG-5324.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/dVHp92VR/IMG-5325.jpg" class="gallery-item"><img src="https://i.postimg.cc/dVHp92VR/IMG-5325.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/2S8gvcrw/IMG-5373.jpg" class="gallery-item"><img src="https://i.postimg.cc/2S8gvcrw/IMG-5373.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/RZV2fs4d/IMG-5378.jpg" class="gallery-item"><img src="https://i.postimg.cc/RZV2fs4d/IMG-5378.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/6p5FRjth/IMG-5383.jpg" class="gallery-item"><img src="https://i.postimg.cc/6p5FRjth/IMG-5383.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/kgXL81qm/IMG-7051.jpg" class="gallery-item"><img src="https://i.postimg.cc/kgXL81qm/IMG-7051.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/Gmh6Y7d2/IMG-7573.jpg" class="gallery-item"><img src="https://i.postimg.cc/Gmh6Y7d2/IMG-7573.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/MGn43ncG/IMG-7763.jpg" class="gallery-item"><img src="https://i.postimg.cc/MGn43ncG/IMG-7763.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/nhcN7RpH/IMG-8397.jpg" class="gallery-item"><img src="https://i.postimg.cc/nhcN7RpH/IMG-8397.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/vZHC9qbT/IMG-9112.jpg" class="gallery-item"><img src="https://i.postimg.cc/vZHC9qbT/IMG-9112.jpg" alt="Memory"></a>
+            <a href="https://i.postimg.cc/RZV2fs4S/IMG-9870.jpg" class="gallery-item"><img src="https://i.postimg.cc/RZV2fs4S/IMG-9870.jpg" alt="Memory"></a>
         </div>
+        
+        <a href="#" class="back-to-top">❤️Ade❤️💕</a>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
     <script>
         function unlock() {
             const pin = document.getElementById('pass').value;
@@ -182,27 +195,31 @@
                 document.getElementById('lock-screen').style.opacity = '0';
                 setTimeout(() => {
                     document.getElementById('lock-screen').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    window.scrollTo(0,0);
+                    const main = document.getElementById('main-content');
+                    main.style.display = 'block';
+                    setTimeout(() => main.style.opacity = '1', 50);
+                    // Initialize LightGallery
+                    lightGallery(document.getElementById('lightgallery'), {
+                        speed: 500,
+                        download: false
+                    });
                 }, 800);
             } else {
                 document.getElementById('error-msg').innerText = "Not quite... try again, my love.";
             }
         }
 
-        // Animated Hearts Background
-        const bg = document.getElementById('heart-bg');
-        const heartIcons = ['❤️', '💖', '✨', '🌸'];
-        for (let i = 0; i < 25; i++) {
-            const heart = document.createElement('div');
-            heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-            heart.style.position = 'absolute';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            heart.style.opacity = Math.random() * 0.2;
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.filter = 'blur(1px)';
-            bg.appendChild(heart);
+        // Starry Background
+        const bg = document.getElementById('bg-stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.innerHTML = i % 2 === 0 ? '✨' : '❤️';
+            star.style.position = 'absolute';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.opacity = Math.random() * 0.2;
+            star.style.fontSize = (Math.random() * 15 + 5) + 'px';
+            bg.appendChild(star);
         }
     </script>
 </body>
