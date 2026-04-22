@@ -5,125 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Moments - Ademi</title>
     <style>
-        :root {
-            --primary: #ff4b5c;
-            --bg: #0b0914;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
+        :root { --primary: #ff4b5c; --bg: #0b0914; --glass: rgba(255, 255, 255, 0.05); }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; text-align: center; padding-bottom: 100px; }
+        
+        header { padding: 60px 20px 30px; background: linear-gradient(to bottom, rgba(255, 75, 92, 0.1), transparent); }
+        h1 { font-size: 2rem; letter-spacing: 3px; color: var(--primary); margin: 0; text-transform: uppercase; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        header {
-            padding: 60px 20px 20px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .video-container {
-            width: 90%;
-            max-width: 400px; /* Slimmer for YouTube Shorts/Portrait video */
-            margin: 20px auto;
+        .video-container { 
+            width: 90%; 
+            max-width: 400px; 
+            margin: 20px auto; 
             background: var(--glass);
-            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
+        /* Responsive aspect ratio for Shorts (9:16) */
         .video-wrapper {
             position: relative;
-            padding-bottom: 177.77%; /* Perfect 9:16 ratio for Shorts */
+            padding-bottom: 177.78%; /* Aspect ratio for vertical video */
             height: 0;
         }
-
         .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: none;
         }
 
-        .video-info {
-            padding: 20px;
-            text-align: center;
-        }
+        .video-info { padding: 15px; font-style: italic; opacity: 0.8; font-size: 0.9rem; }
 
-        .video-info h3 {
-            margin: 0;
-            font-size: 1.1rem;
-            color: var(--primary);
+        /* Sticky Navigation */
+        .footer-nav { 
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 100; 
+            width: 100%;
         }
-
-        .footer {
-            margin: 40px 0 60px;
-            text-align: center;
-        }
-
-        .back-btn {
-            color: white;
-            text-decoration: none;
-            border: 1px solid var(--primary);
-            padding: 10px 25px;
-            border-radius: 25px;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: var(--primary);
-        }
-
-        .signature {
-            margin-top: 30px;
-            font-style: italic;
-            opacity: 0.7;
-            font-size: 0.9rem;
+        .back-nav { 
+            display: inline-block; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 12px 40px; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            box-shadow: 0 5px 20px rgba(255, 75, 92, 0.4); 
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Our Moments in Motion</h1>
-        <p>I love every second of our journey.</p>
+        <h1>Cinema of Us</h1>
+        <p style="opacity: 0.6; font-style: italic;">Memories in motion...</p>
     </header>
 
     <div class="video-container">
         <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/SkfLRm07nkA" 
-                    title="Our Memory" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
+            <iframe src="https://www.youtube.com/embed/SkfLRm07nkA" allowfullscreen></iframe>
         </div>
-        <div class="video-info">
-            <h3>Treasured Moment</h3>
-            <p>One of my favorite memories of us. ❤️</p>
-        </div>
+        <div class="video-info">Every laugh captured.</div>
     </div>
 
-    <div class="footer">
-        <a href="index.html" class="back-btn">← Back to Gallery</a>
-        <div class="signature">
-            Prepared with love by <br>
-            <strong>Akinola Boluwatife Ayomide</strong>
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/hJ70PaOl0wI" allowfullscreen></iframe>
         </div>
+        <div class="video-info">A moment I never want to forget.</div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/bhd0mOGi4ts" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">The way you make everything better.</div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/icT-3ruuFDY" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">Simply beautiful.</div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/15hJ5_u08Z0" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">Forever starts here.</div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/DJ_ZbvxHlHo" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">My favorite view.</div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/TbFbcv-RiSg" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">Our little world.</div>
+    </div>
+
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/f6_OyH-VwgA" allowfullscreen></iframe>
+        </div>
+        <div class="video-info">Endless love.</div>
+    </div>
+
+    <div class="footer-nav">
+        <a href="index.html" class="back-nav">← Back Home</a>
     </div>
 
 </body>
