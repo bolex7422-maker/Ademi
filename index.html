@@ -5,151 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Story - Ademi</title>
     <style>
-        :root { --primary: #ff4b5c; --glass: rgba(255, 255, 255, 0.08); --bg: #0b0914; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow-x: hidden; text-align: center; }
+        :root { --primary: #ff4b5c; --bg: #0b0914; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 280px; }
+        input { width: 90%; padding: 12px; margin: 15px 0; border-radius: 10px; border: none; text-align: center; }
+        button { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; }
         
-        /* Lock Screen Styles */
-        #lock-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 1000; transition: 0.5s; }
-        .login-box { background: var(--glass); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); width: 80%; max-width: 300px; }
-        input { width: 100%; padding: 12px; margin: 20px 0; border-radius: 10px; border: none; outline: none; text-align: center; }
-        .login-btn { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
-        
-        /* Main Content Styles */
         #main-content { display: none; padding: 20px; }
-        header h1 { font-size: 2.5rem; color: var(--primary); margin-top: 50px; }
-        .letter-box { background: var(--glass); padding: 25px; border-radius: 20px; margin: 20px auto; max-width: 500px; font-style: italic; line-height: 1.6; border: 1px solid rgba(255,255,255,0.05); }
+        .btn { display: block; padding: 15px; margin: 10px auto; width: 85%; max-width: 300px; border-radius: 30px; text-decoration: none; font-weight: bold; border: 1px solid var(--primary); color: white; }
+        .btn-gallery { background: rgba(255, 75, 92, 0.1); }
         
-        /* The Three Buttons */
-        .action-btn { 
-            color: white; text-decoration: none; border: 1px solid var(--primary); 
-            background: rgba(255, 75, 92, 0.1); padding: 12px; border-radius: 25px; 
-            display: inline-block; font-weight: bold; width: 85%; margin-top: 15px; 
-            transition: 0.3s; cursor: pointer;
-        }
-        .btn-white { border-color: white; background: none; }
-        .btn-red-outline { background: none; }
-
-        /* Hidden Gallery System */
-        #photo-gallery { display: none; margin-top: 40px; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; }
-        .gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; transition: 0.3s; }
+        #photo-gallery { display: none; margin-top: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
+        .grid img { width: 100%; border-radius: 10px; }
     </style>
 </head>
 <body>
 
     <div id="lock-screen">
-        <div class="login-box">
-            <h2>Hi my little princess Ademi ❤️</h2>
-            <input type="password" id="pass" placeholder="Enter Secret Key">
-            <button class="login-btn" onclick="unlock()">Unlock Memories</button>
-            <p id="error-msg" style="color: var(--primary); font-size: 0.8rem; margin-top: 10px;"></p>
+        <div class="box">
+            <h2>Hi Ademi ❤️</h2>
+            <input type="password" id="pass" placeholder="Secret Key">
+            <button onclick="unlock()">Unlock</button>
         </div>
     </div>
 
     <div id="main-content">
-        <header>
-            <h1>ADENIKE</h1>
-            <div class="letter-box">
-                "Here is to every laugh, every prayer, and every beautiful second we've shared. This is our small space of the internet, where our best moments live forever. I want you to know that I will always love you till the end."
-                <br><br>
-                <a href="reasons.html" class="action-btn btn-red-outline">Click for a special message →</a>
-                <br>
-                <a href="videos.html" class="action-btn btn-white">Watch Our Videos 🎥</a>
-                <br>
-                <div class="action-btn" onclick="showPhotos()">View Our Gallery 📸</div>
-            </div>
-        </header>
+        <h1 style="color:var(--primary)">ADENIKE</h1>
+        <p style="padding: 0 20px; opacity: 0.8;">"I will always love you till the end."</p>
+        
+        <a href="reasons.html" class="btn">A Special Message →</a>
+        <a href="videos.html" class="btn" style="border-color: white;">Watch Our Videos 🎥</a>
+        <div class="btn btn-gallery" onclick="toggle()">View Our Gallery 📸</div>
 
         <div id="photo-gallery">
-            <div class="gallery">
+            <div class="grid">
                 <img src="https://i.postimg.cc/85zPsqM8/IMG-7275.jpg">
                 <img src="https://i.postimg.cc/0jXyZ7v6/IMG-7276.jpg">
                 <img src="https://i.postimg.cc/8C0XF7xY/IMG-7278.jpg">
-                <img src="https://i.postimg.cc/0jXyZ7v6/IMG-7276.jpg">
                 <img src="https://i.postimg.cc/44rGvYk8/IMG-7281.jpg">
-                <img src="https://i.postimg.cc/Wb7Fw4Xg/IMG-7282.jpg">
-                <img src="https://i.postimg.cc/j5P30q5p/IMG-7283.jpg">
-                <img src="https://i.postimg.cc/tCc6K9L4/IMG-7284.jpg">
-                <img src="https://i.postimg.cc/NMLq9t6d/IMG-7285.jpg">
-                <img src="https://i.postimg.cc/6pQWzWvY/IMG-7286.jpg">
-                <img src="https://i.postimg.cc/zXvXp10q/IMG-7287.jpg">
-                <img src="https://i.postimg.cc/pTfG2hZ7/IMG-7288.jpg">
-                <img src="https://i.postimg.cc/mDskL7V3/IMG-7289.jpg">
-                <img src="https://i.postimg.cc/W3607v0t/IMG-7290.jpg">
-                <img src="https://i.postimg.cc/8PQv8XqP/IMG-7291.jpg">
-                <img src="https://i.postimg.cc/26Z8pLh2/IMG-7292.jpg">
-                <img src="https://i.postimg.cc/T3SjNn5C/IMG-7293.jpg">
-                <img src="https://i.postimg.cc/jSLT8C8s/IMG-7294.jpg">
-                <img src="https://i.postimg.cc/g2nB8Fp0/IMG-7295.jpg">
-                <img src="https://i.postimg.cc/J0vD33M9/IMG-7296.jpg">
-                <img src="https://i.postimg.cc/Wp6H4Yvj/IMG-7297.jpg">
-                <img src="https://i.postimg.cc/C1H5hTzR/IMG-7298.jpg">
-                <img src="https://i.postimg.cc/xT4M6v98/IMG-7299.jpg">
-                <img src="https://i.postimg.cc/zX3Bv8D5/IMG-7300.jpg">
-                <img src="https://i.postimg.cc/q73S9s6N/IMG-7301.jpg">
-                <img src="https://i.postimg.cc/T1LgYfH7/IMG-7302.jpg">
-                <img src="https://i.postimg.cc/T38FmY1m/IMG-7303.jpg">
-                <img src="https://i.postimg.cc/43s202Xq/IMG-7304.jpg">
-                <img src="https://i.postimg.cc/mDW7p6rC/IMG-7305.jpg">
-                <img src="https://i.postimg.cc/zGvSjB1s/IMG-7306.jpg">
-                <img src="https://i.postimg.cc/FHBV3m87/IMG-7307.jpg">
-                <img src="https://i.postimg.cc/SRHq22G4/IMG-7308.jpg">
-                <img src="https://i.postimg.cc/50RMTg9s/IMG-7309.jpg">
-                <img src="https://i.postimg.cc/6qW8D9q8/IMG-7310.jpg">
-                <img src="https://i.postimg.cc/PqjGZ3b3/IMG-7311.jpg">
-                <img src="https://i.postimg.cc/1zd9GshC/IMG-7312.jpg">
-                <img src="https://i.postimg.cc/qMq0r5hG/IMG-7313.jpg">
-                <img src="https://i.postimg.cc/NfKqXQ5r/IMG-7314.jpg">
-                <img src="https://i.postimg.cc/50mBqG9z/IMG-7315.jpg">
-                <img src="https://i.postimg.cc/W3V5hTz8/IMG-7316.jpg">
-                <img src="https://i.postimg.cc/Y96r8FzC/IMG-7317.jpg">
-                <img src="https://i.postimg.cc/TY9G5XpS/IMG-7318.jpg">
-                <img src="https://i.postimg.cc/YSp3fTzS/IMG-7319.jpg">
-                <img src="https://i.postimg.cc/mDTjXq8v/IMG-7320.jpg">
-                <img src="https://i.postimg.cc/3RxqYfT7/IMG-7321.jpg">
-                <img src="https://i.postimg.cc/XvG5jTzS/IMG-7322.jpg">
-                <img src="https://i.postimg.cc/Y9mFfTzS/IMG-7323.jpg">
-                <img src="https://i.postimg.cc/mDWpYfT7/IMG-7324.jpg">
-                <img src="https://i.postimg.cc/XvGqYfT7/IMG-7325.jpg">
-                <img src="https://i.postimg.cc/Y96pYfT7/IMG-7326.jpg">
-                <img src="https://i.postimg.cc/mDWpYfT7/IMG-7327.jpg">
-                <img src="https://i.postimg.cc/XvGqYfT7/IMG-7328.jpg">
-                <img src="https://i.postimg.cc/Y96pYfT7/IMG-7329.jpg">
-                <img src="https://i.postimg.cc/mDWpYfT7/IMG-7330.jpg">
-                <img src="https://i.postimg.cc/XvGqYfT7/IMG-7331.jpg">
-                <img src="https://i.postimg.cc/Y96pYfT7/IMG-7332.jpg">
-                <img src="https://i.postimg.cc/mDWpYfT7/IMG-7333.jpg">
-                <img src="https://i.postimg.cc/XvGqYfT7/IMG-7334.jpg">
-                <img src="https://i.postimg.cc/Y96pYfT7/IMG-7335.jpg">
-                <img src="https://i.postimg.cc/mDWpYfT7/IMG-7336.jpg">
-                <img src="https://i.postimg.cc/XvGqYfT7/IMG-7337.jpg">
-                <img src="https://i.postimg.cc/Y96pYfT7/IMG-7338.jpg">
-                <img src="https://i.postimg.cc/mDWpYfT7/IMG-7339.jpg">
-                <img src="https://i.postimg.cc/XvGqYfT7/IMG-7340.jpg">
-                </div>
-            <p style="margin-bottom: 50px;">Prepared with love by <br> <strong>Akinola Boluwatife Ayomide</strong></p>
+            </div>
+            <p style="margin: 40px 0;">Prepared with love by <br><strong>Akinola Boluwatife Ayomide</strong></p>
         </div>
     </div>
 
     <script>
         function unlock() {
-            const password = document.getElementById("pass").value.toLowerCase();
-            if (password === "adenike") {
+            if (document.getElementById("pass").value.toLowerCase() === "adenike") {
                 document.getElementById("lock-screen").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
-            } else {
-                document.getElementById("error-msg").innerText = "Wrong key, my princess. Try again!";
             }
         }
-
-        function showPhotos() {
-            var x = document.getElementById("photo-gallery");
-            if (x.style.display === "none" || x.style.display === "") {
-                x.style.display = "block";
-                window.scrollBy(0, 300); // Smoothly scrolls down to the photos
-            } else {
-                x.style.display = "none";
-            }
+        function toggle() {
+            var g = document.getElementById("photo-gallery");
+            g.style.display = (g.style.display === "none") ? "block" : "none";
+            if(g.style.display === "block") window.scrollBy(0, 300);
         }
     </script>
 </body>
