@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Akure Rewards - Ademi</title>
+    <style>
+        :root { --primary: #ff4b5c; --bg: #0b0914; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Georgia', serif; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+        
+        .container { position: relative; width: 320px; height: 320px; cursor: crosshair; }
+        canvas { position: absolute; top: 0; left: 0; border-radius: 20px; z-index: 2; touch-action: none; border: 2px solid rgba(255, 75, 92, 0.2); }
+        
+        .prize-layer { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 75, 92, 0.05));
+            border-radius: 20px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            text-align: center; padding: 30px; box-sizing: border-box; z-index: 1;
+        }
+
+        .prize-text { font-size: 1.3rem; font-style: italic; color: #fff; line-height: 1.5; text-shadow: 0 0 10px rgba(255, 75, 92, 0.5); }
+        h2 { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; color: var(--primary); }
+        
+        .back-nav { position: fixed; bottom: 30px; color: #666; text-decoration: none; font-size: 0.9rem; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <h1 style="margin-bottom: 20px; font-weight: normal; letter-spacing: 2px; font-size: 1.5rem;">THE REVEAL</h1>
+    <p style="margin-bottom: 20px; opacity: 0.6; font-size: 0.9rem;">Scratch to see your reward today...</p>
+
+    <div class="container" id="js-container">
+        <div class="prize-layer">
+            <h2>WINNER</h2>
+            <div class="prize-text" id="prize">...</div>
+        </div>
+        <canvas id="js-canvas" width="320" height="320"></canvas>
+    </div>
+
+    <a href="index.html" class="back-nav">← Back to our space</a>
+
+    <script>
+        const canvas = document.getElementById('js-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Your Custom Prizes + My Suggestions
+        const prizes = [
+            "Two minutes deep kiss for you when you come to Akure 💋",
+            "10 minutes massage session for you when you’re in Akure 💆‍♀️",
+            "Be the Boss for 2 hours and Anything you want, Bolex will do for you 😎",
+            "Bolex will send you a video saying he loves you right now 🎥",
+            "A late-night Akure street food date on me 🥘",
+            "I'll sing your favorite song for you on a voice note tonight 🎤",
+            "Good for one 'I am sorry' even if I am right (Redeemable anytime) 🏳️",
+            "A 30-minute video call where I do nothing but look at your beautiful face 😍",
+            "You get to pick my outfit for our next outing in Akure 👔",
+            "A handwritten love letter delivered to you in Akure ✍️"
+        ];
+
+        document.getElementById('prize').innerText = prizes[Math.floor(Math.random() * prizes.length)];
+
+        // Scratch layer styling
+        ctx.fillStyle = '#2c2a35'; 
+        ctx.fillRect(0, 0, 320, 320);
+        
+        // Pattern for the scratch layer
+        ctx.strokeStyle = 'rgba(255, 75, 92, 0.3)';
+        for(let i=0; i<320; i+=20) {
+            ctx.moveTo(i, 0); ctx.lineTo(i, 320);
+            ctx.moveTo(0, i); ctx.lineTo(320, i);
+        }
+        ctx.stroke();
+
+        ctx.font = 'bold 18px sans-serif';
+        ctx.fillStyle = '#ff4b5c';
+        ctx.textAlign = 'center';
+        ctx.fillText('SCRATCH TO REVEAL ❤️', 160, 160);
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 30, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', () => isDrawing = true);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+        canvas.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); scratch(e); });
+    </script>
+</body>
+</html>
