@@ -8,37 +8,25 @@
         :root { --primary: #ff4b5c; --glass: rgba(255, 255, 255, 0.08); --bg: #0b0914; }
         body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow-x: hidden; text-align: center; }
         
-        /* Floating Background Animation */
-        .bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .bg-elements { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
         .heart { position: absolute; color: var(--primary); opacity: 0.2; animation: float 15s linear infinite; }
         @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
 
-        /* Lock Screen */
         #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 1000; }
         .login-box { background: var(--glass); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); width: 80%; max-width: 300px; }
-        input { width: 100%; padding: 12px; margin: 20px 0; border-radius: 10px; border: none; text-align: center; font-size: 1rem; }
-        .login-btn { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border-radius: 10px; border: none; text-align: center; }
+        .login-btn { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 10px; width: 100%; font-weight: bold; }
 
-        /* Main Content */
         #main-content { display: none; padding: 20px; }
         header h1 { font-size: 3rem; color: var(--primary); margin-top: 50px; text-shadow: 0 0 20px rgba(255,75,92,0.5); }
         .letter-box { background: var(--glass); padding: 25px; border-radius: 20px; margin: 20px auto; max-width: 500px; border: 1px solid rgba(255,255,255,0.1); line-height: 1.6; font-style: italic; }
         
-        /* Buttons */
-        .btn { display: block; width: 85%; padding: 15px; margin: 15px auto; border-radius: 30px; font-weight: bold; text-decoration: none; transition: 0.3s; cursor: pointer; border: 1px solid var(--primary); color: white; text-align: center; }
+        .btn { display: block; width: 85%; padding: 15px; margin: 15px auto; border-radius: 30px; font-weight: bold; text-decoration: none; border: 1px solid var(--primary); color: white; }
         .btn-red { background: var(--primary); }
-        .btn-outline { background: transparent; border-color: white; }
-        .btn-gallery { background: rgba(255, 75, 92, 0.1); color: var(--primary); }
-
-        /* Gallery Grid */
-        #photo-gallery { display: none; margin-top: 30px; }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; }
-        .gallery img { width: 100%; height: 230px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
-        .gallery img:hover { transform: scale(1.03); border-color: var(--primary); }
+        .btn-outline { border-color: white; }
     </style>
 </head>
 <body>
-
     <div class="bg-elements" id="bg"></div>
 
     <div id="lock-screen">
@@ -50,106 +38,40 @@
     </div>
 
     <div id="main-content">
-        <header>
-            <h1>ADENIKE</h1>
-            <div class="letter-box">
-                "Here is to every laugh, every prayer, and every beautiful second we've shared. I want you to know that I will always love you till the end."
-                <br><br>
-                <a href="reasons.html" class="btn btn-red">A Special Message →</a>
-                <a href="videos.html" class="btn btn-outline">Watch Our Videos 🎥</a>
-                <div class="btn btn-gallery" onclick="toggleGallery()">View Our Gallery 📸</div>
-            </div>
-        </header>
-
-        <div id="photo-gallery">
-            <div class="gallery">
-                <img src="https://i.postimg.cc/MTqkMnfD/IMG-0780.png">
-                <img src="https://i.postimg.cc/MTqkMnf0/IMG-0781.png">
-                <img src="https://i.postimg.cc/RF4r6WJq/IMG-0782.png">
-                <img src="https://i.postimg.cc/wBh8jXMJ/IMG-0783.png">
-                <img src="https://i.postimg.cc/fbxnRcyy/IMG-0784.png">
-                <img src="https://i.postimg.cc/6QdJprq7/IMG-0785.png">
-                <img src="https://i.postimg.cc/tghQ43JG/IMG-0786.png">
-                <img src="https://i.postimg.cc/q7fHrbJp/IMG-0787.png">
-                <img src="https://i.postimg.cc/MGkJwP6k/IMG-0788.png">
-                <img src="https://i.postimg.cc/k5rPC1nv/IMG-0789.png">
-                <img src="https://i.postimg.cc/g2LbfFPB/IMG-0790.png">
-                <img src="https://i.postimg.cc/XYB6TS0C/IMG-0791.png">
-                <img src="https://i.postimg.cc/fRSQ6nhT/IMG-0792.png">
-                <img src="https://i.postimg.cc/rFPLny7w/IMG-0793.png">
-                <img src="https://i.postimg.cc/TY4X72BR/IMG-0794.png">
-                <img src="https://i.postimg.cc/dtxKHQgP/IMG-0795.png">
-                <img src="https://i.postimg.cc/65mNj6gD/IMG-0796.png">
-                <img src="https://i.postimg.cc/qM5dbBS5/IMG-0797.png">
-                <img src="https://i.postimg.cc/hPjB1QZB/IMG-0798.png">
-                <img src="https://i.postimg.cc/kX4mvRYr/IMG-0799.png">
-                <img src="https://i.postimg.cc/rFmkNRnQ/IMG-0800.png">
-                <img src="https://i.postimg.cc/X7JbkBHK/IMG-0801.png">
-                <img src="https://i.postimg.cc/tCTjNnSF/IMG-0802.png">
-                <img src="https://i.postimg.cc/kX4mvR1x/IMG-0803.png">
-                <img src="https://i.postimg.cc/L4vSP3T6/IMG-0804.png">
-                <img src="https://i.postimg.cc/Kj9yymz5/IMG-0805.png">
-                <img src="https://i.postimg.cc/fyHhhMLm/IMG-0806.png">
-                <img src="https://i.postimg.cc/d3WKKJ1D/IMG-0807.png">
-                <img src="https://i.postimg.cc/sxfR8MVS/IMG-0808.png">
-                <img src="https://i.postimg.cc/rsyLbD8K/IMG-0809.png">
-                <img src="https://i.postimg.cc/KjcyV1ZZ/IMG-0810.png">
-                <img src="https://i.postimg.cc/FzFQqYhM/IMG-0811.png">
-                <img src="https://i.postimg.cc/C5MVtRwW/IMG-0812.png">
-                <img src="https://i.postimg.cc/Jn5LPNWw/IMG-0813.png">
-                <img src="https://i.postimg.cc/SsfhD6bP/IMG-0814.png">
-                <img src="https://i.postimg.cc/wvQp0XYX/IMG-0815.png">
-                <img src="https://i.postimg.cc/4dgG68qw/IMG-0816.png">
-                <img src="https://i.postimg.cc/MTSw7sNB/IMG-0817.png">
-                <img src="https://i.postimg.cc/wvpzXWZt/IMG-0818.png">
-                <img src="https://i.postimg.cc/7L7DTvsG/IMG-0819.png">
-                <img src="https://i.postimg.cc/XvF3yMHr/IMG-0820.png">
-                <img src="https://i.postimg.cc/GpYrs0MZ/IMG-0821.png">
-                <img src="https://i.postimg.cc/T3Bfw29X/IMG-0822.png">
-                <img src="https://i.postimg.cc/XYt4JNgD/IMG-0823.png">
-                <img src="https://i.postimg.cc/K8Cxzc5D/IMG-0824.png">
-                <img src="https://i.postimg.cc/vZ4Gbx5z/IMG-0825.png">
-                <img src="https://i.postimg.cc/vZCbB8vV/IMG-0826.png">
-                <img src="https://i.postimg.cc/J46Rf5H7/IMG-0827.png">
-                <img src="https://i.postimg.cc/VLGzxWr7/IMG-0828.png">
-                <img src="https://i.postimg.cc/fTTwqrLY/IMG-0829.png">
-                <img src="https://i.postimg.cc/KvvZpHzg/IMG-0830.png">
-                <img src="https://i.postimg.cc/PJKdrm66/IMG-0831.png">
-                <img src="https://i.postimg.cc/J0KR4bTs/IMG-0832.png">
-                <img src="https://i.postimg.cc/C5wFgvsQ/IMG-0833.png">
-                <img src="https://i.postimg.cc/DZr2RV1k/IMG-0834.png">
-                <img src="https://i.postimg.cc/3RXKzMmX/IMG-0835.png">
-                <img src="https://i.postimg.cc/bJxz4Xk0/IMG-0836.png">
-                <img src="https://i.postimg.cc/MGjZbfGP/IMG-0837.png">
-                <img src="https://i.postimg.cc/JhB7cHhY/IMG-0838.png">
-                <img src="https://i.postimg.cc/k5tMFR5w/IMG-0839.png">
-                <img src="https://i.postimg.cc/YSm2fLSd/IMG-0841.png">
-            </div>
-            <p style="margin: 50px 0; opacity: 0.8;">Prepared with love by <br><strong>Akinola Boluwatife Ayomide</strong></p>
+        <h1>ADENIKE</h1>
+        <div class="letter-box">
+            "Every second with you is a gift I promise to never take for granted. This is our space."
+            <br><br>
+            <a href="reasons.html" class="btn btn-red">A Special Message →</a>
+            <a href="videos.html" class="btn btn-outline">Watch Our Videos 🎥</a>
+            <a href="gallery.html" class="btn" style="background: rgba(255,255,255,0.05)">The Photo Gallery 📸</a>
         </div>
+        <p style="margin-top: 40px; opacity: 0.5;">Forever Yours, Boluwatife</p>
     </div>
 
     <script>
+        // Check if she already logged in during this visit
+        if (sessionStorage.getItem("unlocked") === "true") {
+            document.getElementById("lock-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        }
+
         function unlock() {
             if (document.getElementById("pass").value.toLowerCase() === "adenike") {
+                sessionStorage.setItem("unlocked", "true"); // Saves the login status
                 document.getElementById("lock-screen").style.display = "none";
                 document.getElementById("main-content").style.display = "block";
             }
         }
-        function toggleGallery() {
-            var g = document.getElementById("photo-gallery");
-            g.style.display = (g.style.display === "none") ? "block" : "none";
-            if(g.style.display === "block") window.scrollBy(0, 400);
-        }
-        // Background Heart Animation
+
+        // Heart animation
         const bg = document.getElementById('bg');
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 15; i++) {
             const heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDelay = Math.random() * 15 + 's';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDelay = Math.random() * 10 + 's';
             bg.appendChild(heart);
         }
     </script>
