@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>300 Reasons - Ademi</title>
+    <title>1000 Reasons - Ademi</title>
     <style>
         :root {
             --primary: #ff4b5c;
@@ -14,28 +14,19 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Georgia', serif; /* More mature, elegant font */
+            font-family: 'Georgia', serif;
             background-color: var(--bg);
             color: #e0e0e0;
             text-align: center;
         }
 
-        header {
-            padding: 80px 20px 40px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
+        header { padding: 80px 20px 40px; }
+        h1 { font-size: 2.2rem; letter-spacing: 2px; color: var(--primary); text-transform: uppercase; }
 
         .container {
             width: 90%;
             max-width: 650px;
-            margin: 0 auto 60px;
+            margin: 0 auto 100px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -45,128 +36,116 @@
             background: var(--glass);
             backdrop-filter: blur(15px);
             border-left: 3px solid var(--primary);
-            padding: 30px;
+            padding: 25px;
             border-radius: 5px;
             text-align: left;
-            transition: 0.4s ease;
         }
 
-        .reason-card:hover {
-            background: rgba(255, 75, 92, 0.05);
-            transform: translateX(10px);
-        }
+        .number { color: var(--primary); font-size: 0.7rem; display: block; margin-bottom: 8px; font-family: sans-serif; }
+        .text { line-height: 1.7; font-size: 1.05rem; }
 
-        .number {
-            color: var(--primary);
-            font-size: 0.8rem;
-            display: block;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            font-family: sans-serif;
+        /* Sticky Navigation like the Gallery */
+        .footer-nav { 
+            position: fixed; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 100; 
+            width: 100%;
         }
-
-        .text {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .footer {
-            padding: 60px 20px;
-            background: rgba(0,0,0,0.3);
-        }
-
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 40px;
-            color: #aaa;
-            text-decoration: none;
-            border-bottom: 1px solid #444;
-            padding-bottom: 5px;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            color: var(--primary);
-            border-color: var(--primary);
+        .back-nav { 
+            display: inline-block; 
+            background: var(--primary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 12px 40px; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            box-shadow: 0 5px 20px rgba(255, 75, 92, 0.4); 
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Everything I Am</h1>
-        <p style="opacity: 0.5; font-style: italic;">300 reasons why it will always be you.</p>
+        <h1>The Infinite Vault</h1>
+        <p style="opacity: 0.5; font-style: italic;">1,000 reflections of my love for you.</p>
     </header>
 
     <div class="container" id="reason-container">
         </div>
 
-    <div class="footer">
-        <a href="index.html" class="back-btn">← Return to our space</a>
-        <p style="letter-spacing: 2px; font-size: 0.8rem; opacity: 0.6;">FOREVER YOURS,</p>
-        <h3 style="color: white; margin-top: 5px;">Akinola Boluwatife Ayomide</h3>
+    <div class="footer-nav">
+        <a href="index.html" class="back-nav">← Back Home</a>
     </div>
 
     <script>
-        const messages = [
-            // MATURE & INTENSE
-            "I love the way your presence alone commands my full attention without you saying a word.",
-            "The depth of your soul is a mystery I want to spend the rest of my life solving.",
-            "I love how we can share a look across a crowded room and know exactly what the other is thinking.",
-            "The way you handle your challenges with such grace makes me admire you more every day.",
-            "I love how you’ve seen my darkest sides and chose to stay and shine your light on them.",
-            "There is a peace in your arms that I haven't found anywhere else in this world.",
-            "I love that you are my safest place and my wildest adventure all at once.",
-            "The way your mind works is the most attractive thing about you.",
-            "I love the quiet moments we share where words aren't even necessary.",
-            "You are the only person I've ever met who feels like home.",
+        const categories = {
+            romantic: [
+                "I love how your soul mirrors mine in ways I never thought possible.",
+                "The way you handle my heart with such care makes me feel truly seen.",
+                "I love that you are my safest place and my most thrilling adventure.",
+                "The peace I feel when you are near is something I can't find anywhere else.",
+                "I love that we don't just exist together, we grow together.",
+                "You are the answer to prayers I didn't even know I was whispering.",
+                "I love the way you look at me when you think I’m not noticing.",
+                "Your resilience is a constant source of inspiration for me.",
+                "I love how we can be ourselves without any filters or pretenses."
+            ],
+            sensual: [
+                "I love the intoxicating scent of your skin after a long day.",
+                "The way your hands feel on my chest is my favorite sensation.",
+                "I love the electricity that sparks every time our fingers touch.",
+                "The sound of your voice in the quiet of the night is my favorite melody.",
+                "I love the way your body fits perfectly against mine, like a missing piece.",
+                "The curve of your smile is only rivaled by the curve of your waist.",
+                "I love the way you taste—it's a craving I can never fully satisfy.",
+                "There is a specific way you look at me that tells me exactly what you're thinking."
+            ],
+            playful: [
+                "I love that we fight and settle like cat and dog—it keeps us real.",
+                "Your stubbornness is frustratingly beautiful, and I wouldn't change it.",
+                "I love our inside jokes that make zero sense to anyone else.",
+                "The way you tease me is the highlight of my afternoon.",
+                "I love that you know exactly which buttons to push to make me laugh.",
+                "Even when we're 'fighting,' I'm secretly thinking about how much I love you."
+            ],
+            future: [
+                "I love that when I think of home, I think of your face.",
+                "The vision of you as the mother of my children is my ultimate goal.",
+                "I love that we are building a legacy together, not just a relationship.",
+                "I can't wait to see how beautifully you age through the years.",
+                "I love the thought of us being that old couple still holding hands in the park."
+            ]
+        };
 
-            // PLAYFUL/CAT & DOG (Mature version)
-            "I love our intellectual friction; it keeps my mind sharp and my heart engaged.",
-            "Even when we are at odds, there is no one else I'd rather argue with until 3 AM.",
-            "I love that we challenge each other to be better, even when it’s uncomfortable.",
-            "The way we settle our differences only makes our bond feel more unbreakable.",
-
-            // ROMANTIC & SENSUAL
-            "I love the way your skin feels against mine in the middle of the night.",
-            "The curve of your neck is my favorite place to leave a trace of my love.",
-            "I love how you look in the morning—raw, natural, and breathtakingly beautiful.",
-            "The way you pull me closer when you’re half-asleep is a feeling I’ll never get tired of.",
-            "I love the weight of your head on my chest; it’s where you belong.",
-            "The scent you leave on my clothes is a constant reminder of what I’m working for.",
-            "I love the way you taste after a long day—like the only thing I ever needed.",
-            "There is an electricity in your touch that still gives me chills after all this time.",
-            "I love the way your eyes darken when you’re looking at me with desire.",
-            "Your body is a temple, and I promise to worship it with every breath I have.",
-            "I love the sound of your breath hitching when I whisper in your ear.",
-
-            // COMMITMENT & FUTURE
-            "I love that I don't just want you for today, but for every tomorrow we are allowed.",
-            "The thought of you being the mother of my children is the greatest vision of my future.",
-            "I love that we are building an empire together, brick by brick, prayer by prayer.",
-            "You are the finish line of my every race and the start of my every journey.",
-            "I love that I can trust you with my life, my secrets, and my legacy."
-        ];
-
-        function generate300() {
+        function generate1000() {
             let fullList = [];
-            // We loop through the base messages and create variations for a total of 300
-            for(let i = 0; i < 300; i++) {
-                fullList.push(messages[i % messages.length]);
+            let allPhrases = [...categories.romantic, ...categories.sensual, ...categories.playful, ...categories.future];
+            
+            // To avoid boring repetition, we create variations by combining different starts/ends
+            const connectors = ["Because", "I truly love that", "It's incredible how", "I cherish how"];
+            
+            for (let i = 0; i < 1000; i++) {
+                let randomPhrase = allPhrases[i % allPhrases.length];
+                // Add slight variations to the phrasing to keep it fresh
+                if (i > allPhrases.length) {
+                    let connector = connectors[i % connectors.length];
+                    randomPhrase = connector + " " + randomPhrase.charAt(0).toLowerCase() + randomPhrase.slice(1);
+                }
+                fullList.push(randomPhrase);
             }
-            // Shuffle the list so it's different every time
             return fullList.sort(() => Math.random() - 0.5);
         }
 
         const container = document.getElementById('reason-container');
-        const shuffledMessages = generate300();
+        const finalMessages = generate1000();
 
-        shuffledMessages.forEach((msg, index) => {
+        finalMessages.forEach((msg, index) => {
             const card = document.createElement('div');
             card.className = 'reason-card';
             card.innerHTML = `
-                <span class="number">SECTION ${(index + 1).toString().padStart(3, '0')}</span>
+                <span class="number">REASON NO. ${(index + 1).toString().padStart(4, '0')}</span>
                 <div class="text">${msg}</div>
             `;
             container.appendChild(card);
