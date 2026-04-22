@@ -19,6 +19,27 @@
             color: white;
             overflow-x: hidden;
         }
+                #photo-gallery {
+            display: none; /* This hides the gallery at the start */
+            margin-top: 30px;
+        }
+
+        .show-btn {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #ff4b5c;
+            background: rgba(255, 75, 92, 0.1);
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+            cursor: pointer;
+            width: 80%;
+            margin-top: 15px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
 
         /* Floating Animation */
         .bg-elements {
@@ -110,7 +131,7 @@
             <input type="password" id="pass" placeholder="Enter our secret key...">
             <button onclick="unlock()">Unlock Memories</button>
             <p id="error-msg"></p>
-        </div>
+        
     </div>
 
     <div id="main-content">
@@ -119,17 +140,20 @@
 <div class="letter-box">
     "Here is to every laugh, every prayer, and every beautiful second we've shared. This is our small space of the internet, where our best moments live forever. I want you to know that I will always love you till the end."
     <br><br>
-    <a href="reasons.html" style="color: #ff4b5c; text-decoration: none; border: 1px solid #ff4b5c; padding: 8px 20px; border-radius: 20px; display: inline-block; font-style: normal; font-weight: bold; margin-bottom: 15px; width: 80%;">Click for a special message →</a>
+    <a href="reasons.html" class="show-btn" style="background: none;">Click for a special message →</a>
     <br>
-    <a href="videos.html" style="color: white; text-decoration: none; border: 1px solid white; padding: 8px 20px; border-radius: 20px; display: inline-block; font-style: normal; font-weight: bold; width: 80%;">Watch Our Videos 🎥</a>
+    <a href="videos.html" class="show-btn" style="border-color: white; background: none;">Watch Our Videos 🎥</a>
+    <br>
+    <div class="show-btn" onclick="showPhotos()">View Our Gallery 📸</div>
 </div>
+
 
 
 </header>
 "
             </div>
         </header>
-
+<div id="photo-gallery">
         <div class="gallery-grid" id="lightgallery">
             <a href="https://i.postimg.cc/VvVMSt5X/IMG-9867.jpg" class="gallery-item"><img src="https://i.postimg.cc/VvVMSt5X/IMG-9867.jpg" alt="Memory"></a>
             <a href="https://i.postimg.cc/dVLwFSbD/39c8505d-555a-4e1f-98c7-3411131a5cfc.jpg" class="gallery-item"><img src="https://i.postimg.cc/dVLwFSbD/39c8505d-555a-4e1f-98c7-3411131a5cfc.jpg" alt="Memory"></a>
@@ -192,7 +216,6 @@
             <a href="https://i.postimg.cc/vZHC9qbT/IMG-9112.jpg" class="gallery-item"><img src="https://i.postimg.cc/vZHC9qbT/IMG-9112.jpg" alt="Memory"></a>
             <a href="https://i.postimg.cc/RZV2fs4S/IMG-9870.jpg" class="gallery-item"><img src="https://i.postimg.cc/RZV2fs4S/IMG-9870.jpg" alt="Memory"></a>
         </div>
-        
         <a href="#" class="back-to-top">❤️Ade❤️💕</a>
     </div>
 
@@ -230,6 +253,16 @@
             star.style.fontSize = (Math.random() * 15 + 5) + 'px';
             bg.appendChild(star);
         }
-    </script>
+   <script>
+function showPhotos() {
+    var x = document.getElementById("photo-gallery");
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+ </script>
 </body>
 </html>
