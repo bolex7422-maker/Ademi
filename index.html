@@ -3,50 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story - Ademi</title>
+    <title>Our Story - Adenike</title>
     <style>
-        :root { --primary: #ff4b5c; --bg: #0b0914; }
-        body { margin: 0; background: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
-        #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 100; }
-        .box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); width: 280px; }
-        input { width: 90%; padding: 12px; margin: 15px 0; border-radius: 10px; border: none; text-align: center; }
-        button { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 10px; width: 100%; font-weight: bold; }
+        :root { --primary: #ff4b5c; --glass: rgba(255, 255, 255, 0.08); --bg: #0b0914; }
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; overflow-x: hidden; text-align: center; }
         
+        /* Floating Background Animation */
+        .bg-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .heart { position: absolute; color: var(--primary); opacity: 0.2; animation: float 15s linear infinite; }
+        @keyframes float { 0% { transform: translateY(110vh) rotate(0deg); } 100% { transform: translateY(-10vh) rotate(360deg); } }
+
+        /* Lock Screen */
+        #lock-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .login-box { background: var(--glass); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); width: 80%; max-width: 300px; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border-radius: 10px; border: none; text-align: center; font-size: 1rem; }
+        .login-btn { background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; }
+
+        /* Main Content */
         #main-content { display: none; padding: 20px; }
-        .btn { display: block; padding: 15px; margin: 10px auto; width: 85%; max-width: 300px; border-radius: 30px; text-decoration: none; font-weight: bold; border: 1px solid var(--primary); color: white; }
-        .btn-gallery { background: rgba(255, 75, 92, 0.1); }
+        header h1 { font-size: 3rem; color: var(--primary); margin-top: 50px; text-shadow: 0 0 20px rgba(255,75,92,0.5); }
+        .letter-box { background: var(--glass); padding: 25px; border-radius: 20px; margin: 20px auto; max-width: 500px; border: 1px solid rgba(255,255,255,0.1); line-height: 1.6; font-style: italic; }
         
-        #photo-gallery { display: none; margin-top: 20px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .grid img { width: 100%; border-radius: 10px; }
+        /* Buttons */
+        .btn { display: block; width: 85%; padding: 15px; margin: 15px auto; border-radius: 30px; font-weight: bold; text-decoration: none; transition: 0.3s; cursor: pointer; border: 1px solid var(--primary); color: white; text-align: center; }
+        .btn-red { background: var(--primary); }
+        .btn-outline { background: transparent; border-color: white; }
+        .btn-gallery { background: rgba(255, 75, 92, 0.1); color: var(--primary); }
+
+        /* Gallery Grid */
+        #photo-gallery { display: none; margin-top: 30px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; padding: 20px; }
+        .gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
 
+    <div class="bg-elements" id="bg"></div>
+
     <div id="lock-screen">
-        <div class="box">
+        <div class="login-box">
             <h2>Hi Ademi ❤️</h2>
-            <input type="password" id="pass" placeholder="Secret Key">
-            <button onclick="unlock()">Unlock</button>
+            <input type="password" id="pass" placeholder="Enter Secret Key">
+            <button class="login-btn" onclick="unlock()">Unlock Memories</button>
         </div>
     </div>
 
     <div id="main-content">
-        <h1 style="color:var(--primary)">ADENIKE</h1>
-        <p style="padding: 0 20px; opacity: 0.8;">"I will always love you till the end."</p>
-        
-        <a href="reasons.html" class="btn">A Special Message →</a>
-        <a href="videos.html" class="btn" style="border-color: white;">Watch Our Videos 🎥</a>
-        <div class="btn btn-gallery" onclick="toggle()">View Our Gallery 📸</div>
+        <header>
+            <h1>ADENIKE</h1>
+            <div class="letter-box">
+                "Here is to every laugh, every prayer, and every beautiful second we've shared. I want you to know that I will always love you till the end."
+                <br><br>
+                <a href="reasons.html" class="btn btn-red">A Special Message →</a>
+                <a href="videos.html" class="btn btn-outline">Watch Our Videos 🎥</a>
+                <div class="btn btn-gallery" onclick="toggleGallery()">View Our Gallery 📸</div>
+            </div>
+        </header>
 
         <div id="photo-gallery">
-            <div class="grid">
+            <div class="gallery">
                 <img src="https://i.postimg.cc/85zPsqM8/IMG-7275.jpg">
                 <img src="https://i.postimg.cc/0jXyZ7v6/IMG-7276.jpg">
                 <img src="https://i.postimg.cc/8C0XF7xY/IMG-7278.jpg">
                 <img src="https://i.postimg.cc/44rGvYk8/IMG-7281.jpg">
+                <img src="https://i.postimg.cc/Wb7Fw4Xg/IMG-7282.jpg">
+                <img src="https://i.postimg.cc/j5P30q5p/IMG-7283.jpg">
+                <img src="https://i.postimg.cc/tCc6K9L4/IMG-7284.jpg">
+                <img src="https://i.postimg.cc/NMLq9t6d/IMG-7285.jpg">
+                <img src="https://i.postimg.cc/6pQWzWvY/IMG-7286.jpg">
+                <img src="https://i.postimg.cc/zXvXp10q/IMG-7287.jpg">
+                <img src="https://i.postimg.cc/pTfG2hZ7/IMG-7288.jpg">
+                <img src="https://i.postimg.cc/mDskL7V3/IMG-7289.jpg">
+                <img src="https://i.postimg.cc/W3607v0t/IMG-7290.jpg">
+                <img src="https://i.postimg.cc/8PQv8XqP/IMG-7291.jpg">
+                <img src="https://i.postimg.cc/26Z8pLh2/IMG-7292.jpg">
+                <img src="https://i.postimg.cc/T3SjNn5C/IMG-7293.jpg">
+                <img src="https://i.postimg.cc/jSLT8C8s/IMG-7294.jpg">
+                <img src="https://i.postimg.cc/g2nB8Fp0/IMG-7295.jpg">
+                <img src="https://i.postimg.cc/J0vD33M9/IMG-7296.jpg">
+                <img src="https://i.postimg.cc/Wp6H4Yvj/IMG-7297.jpg">
+                <img src="https://i.postimg.cc/C1H5hTzR/IMG-7298.jpg">
+                <img src="https://i.postimg.cc/xT4M6v98/IMG-7299.jpg">
+                <img src="https://i.postimg.cc/zX3Bv8D5/IMG-7300.jpg">
+                <img src="https://i.postimg.cc/q73S9s6N/IMG-7301.jpg">
+                <img src="https://i.postimg.cc/T1LgYfH7/IMG-7302.jpg">
+                <img src="https://i.postimg.cc/T38FmY1m/IMG-7303.jpg">
+                <img src="https://i.postimg.cc/43s202Xq/IMG-7304.jpg">
+                <img src="https://i.postimg.cc/mDW7p6rC/IMG-7305.jpg">
+                <img src="https://i.postimg.cc/zGvSjB1s/IMG-7306.jpg">
+                <img src="https://i.postimg.cc/FHBV3m87/IMG-7307.jpg">
+                <img src="https://i.postimg.cc/SRHq22G4/IMG-7308.jpg">
+                <img src="https://i.postimg.cc/50RMTg9s/IMG-7309.jpg">
+                <img src="https://i.postimg.cc/6qW8D9q8/IMG-7310.jpg">
+                <img src="https://i.postimg.cc/PqjGZ3b3/IMG-7311.jpg">
+                <img src="https://i.postimg.cc/1zd9GshC/IMG-7312.jpg">
+                <img src="https://i.postimg.cc/qMq0r5hG/IMG-7313.jpg">
+                <img src="https://i.postimg.cc/NfKqXQ5r/IMG-7314.jpg">
+                <img src="https://i.postimg.cc/50mBqG9z/IMG-7315.jpg">
+                <img src="https://i.postimg.cc/W3V5hTz8/IMG-7316.jpg">
+                <img src="https://i.postimg.cc/Y96r8FzC/IMG-7317.jpg">
+                <img src="https://i.postimg.cc/TY9G5XpS/IMG-7318.jpg">
+                <img src="https://i.postimg.cc/YSp3fTzS/IMG-7319.jpg">
+                <img src="https://i.postimg.cc/mDTjXq8v/IMG-7320.jpg">
+                <img src="https://i.postimg.cc/3RxqYfT7/IMG-7321.jpg">
+                <img src="https://i.postimg.cc/XvG5jTzS/IMG-7322.jpg">
             </div>
-            <p style="margin: 40px 0;">Prepared with love by <br><strong>Akinola Boluwatife Ayomide</strong></p>
+            <p style="margin: 50px 0; opacity: 0.8;">Prepared with love by <br><strong>Akinola Boluwatife Ayomide</strong></p>
         </div>
     </div>
 
@@ -57,10 +119,21 @@
                 document.getElementById("main-content").style.display = "block";
             }
         }
-        function toggle() {
+        function toggleGallery() {
             var g = document.getElementById("photo-gallery");
             g.style.display = (g.style.display === "none") ? "block" : "none";
-            if(g.style.display === "block") window.scrollBy(0, 300);
+            if(g.style.display === "block") window.scrollBy(0, 400);
+        }
+        // Background Heart Animation
+        const bg = document.getElementById('bg');
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 15 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            bg.appendChild(heart);
         }
     </script>
 </body>
